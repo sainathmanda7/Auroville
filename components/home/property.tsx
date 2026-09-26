@@ -1,19 +1,25 @@
-﻿'use client'
+'use client'
 
 import { useRef } from 'react'
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from 'framer-motion'
 import Image from 'next/image'
 
 export function Property() {
   const containerRef = useRef<HTMLDivElement>(null)
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   })
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     const header = document.querySelector('header')
+
     if (header) {
       if (latest > 0.01 && latest < 0.99) {
         header.style.transform = 'translateY(-100%)'
@@ -27,38 +33,114 @@ export function Property() {
     }
   })
 
-  // Once day dissolves by 0.65, it stays strictly at 0 opacity till the very end and beyond
-  const dayOpacity = useTransform(scrollYProgress, [0.05, 0.65, 1], [1, 0, 0], { clamp: true })
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.05], { clamp: true })
+  const dayOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.05, 0.45, 1],
+    [1, 1, 0, 0],
+    { clamp: true }
+  )
+
+  const eveningOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.55, 0.95, 1],
+    [1, 1, 0, 0],
+    { clamp: true }
+  )
+
+  const imageScale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1, 1.05],
+    { clamp: true }
+  )
 
   return (
-    <section className="relative h-[200vh] w-full" ref={containerRef}>
+    <section
+      ref={containerRef}
+      className="relative h-[300vh] w-full"
+    >
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-charcoal">
-        
-        {/* Background Image: Night View */}
-        <motion.div 
+
+        {/* ================= NIGHT ================= */}
+        <motion.div
           className="absolute inset-0 h-full w-full"
           style={{ scale: imageScale }}
         >
+          {/* Desktop */}
           <Image
-            src="/images/Night-view.png"
+            src="/images/Night-View.png"
             alt="Night view of Coorg with starry hills"
             fill
-            className="object-cover"
+            sizes="100vw"
+            className="hidden object-cover md:block"
+            priority
+          />
+
+          {/* Mobile */}
+          <Image
+            src="/images/Night-View-Mobile.png"
+            alt="Night view of Coorg with starry hills"
+            fill
+            sizes="100vw"
+            className="block object-contain md:hidden"
             priority
           />
         </motion.div>
 
-        {/* Foreground Image: Day View with strict fade to 0 */}
+        {/* ================= EVENING ================= */}
         <motion.div
           className="absolute inset-0 h-full w-full pointer-events-none"
-          style={{ opacity: dayOpacity, scale: imageScale }}
+          style={{
+            opacity: eveningOpacity,
+            scale: imageScale,
+          }}
         >
+          {/* Desktop */}
           <Image
-            src="/images/Day-view.png"
+            src="/images/Evening-View.png"
+            alt="Evening view of Coorg in warm sunset light"
+            fill
+            sizes="100vw"
+            className="hidden object-cover md:block"
+            priority
+          />
+
+          {/* Mobile */}
+          <Image
+            src="/images/Evening-View-Mobile.png"
+            alt="Evening view of Coorg in warm sunset light"
+            fill
+            sizes="100vw"
+            className="block object-contain md:hidden"
+            priority
+          />
+        </motion.div>
+
+        {/* ================= DAY ================= */}
+        <motion.div
+          className="absolute inset-0 h-full w-full pointer-events-none"
+          style={{
+            opacity: dayOpacity,
+            scale: imageScale,
+          }}
+        >
+          {/* Desktop */}
+          <Image
+            src="/images/Day-View.png"
             alt="Day view of Coorg hills in lush sunlight"
             fill
-            className="object-cover"
+            sizes="100vw"
+            className="hidden object-cover md:block"
+            priority
+          />
+
+          {/* Mobile */}
+          <Image
+            src="/images/Day-View-Mobile.png"
+            alt="Day view of Coorg hills in lush sunlight"
+            fill
+            sizes="100vw"
+            className="block object-contain md:hidden"
             priority
           />
         </motion.div>
