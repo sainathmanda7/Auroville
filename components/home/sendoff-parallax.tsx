@@ -118,7 +118,7 @@ export function SendoffParallax() {
   return (
     <section 
       ref={containerRef} 
-      id="contact"
+      id="booking"
       className="relative w-full h-screen overflow-hidden bg-charcoal"
     >
       {/* Background Layer: Sendoff */}
@@ -150,7 +150,7 @@ export function SendoffParallax() {
             Your Stay Awaits
           </span>
           <h2 className="mt-5 font-display text-4xl leading-[1.05] text-soft sm:text-6xl lg:text-7xl text-balance drop-shadow-md">
-            Come stay a while in the hills.
+            Come stay a while at Auroville Farmstay.
           </h2>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-soft/85 sm:text-lg drop-shadow-sm">
             Message us on WhatsApp or give us a call — we will help you find the right dates and answer

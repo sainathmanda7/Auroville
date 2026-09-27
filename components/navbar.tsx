@@ -85,13 +85,26 @@ export function Navbar() {
     }
 
     if (
-      (section === 'contact' || section === 'location' || section === 'cta') &&
+      (section === 'contact' || section === 'location' || section === 'cta' || section === 'booking') &&
       (hrefId === 'contact' || hrefId === 'location' || label === 'contact')
     ) {
       return true
     }
 
     return false
+  }
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#') || href.startsWith('/#')) {
+      const targetId = href.replace(/^[/#]+/, '')
+      const targetEl = document.getElementById(targetId)
+      if (targetEl) {
+        e.preventDefault()
+        setOpen(false)
+        targetEl.scrollIntoView({ behavior: 'smooth' })
+        window.history.pushState(null, '', `#${targetId}`)
+      }
+    }
   }
 
   const solid = scrolled || open
@@ -109,11 +122,12 @@ export function Navbar() {
       >
         <nav className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 sm:h-20 sm:px-8 lg:px-12">
           <Link
-            href="/"
+            href="/#home"
+            onClick={(e) => handleNavClick(e, '#home')}
             className={`font-display text-xl tracking-wide transition-all duration-500 sm:text-2xl ${textTone}`}
-            aria-label="Coorg North Breeze — home"
+            aria-label="Auroville Farmstay — home"
           >
-            North Breeze
+            Auroville Farmstay
           </Link>
 
           <ul className="hidden items-center gap-9 lg:flex">
@@ -123,6 +137,7 @@ export function Navbar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     className={`relative text-[0.8125rem] font-medium uppercase tracking-[0.16em] transition-all duration-500 ${textTone} ${
                       active ? 'opacity-100' : 'opacity-70 hover:opacity-100'
                     }`}
@@ -194,7 +209,7 @@ export function Navbar() {
                   >
                     <Link
                       href={item.href}
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => handleNavClick(e, item.href)}
                       className={`block py-5 font-display text-4xl text-charcoal transition-opacity duration-300 ${
                         active ? 'opacity-100' : 'opacity-60 hover:opacity-100'
                       }`}

@@ -8,9 +8,9 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-24 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div className="flex flex-col gap-5">
-            <span className="font-display text-3xl tracking-wide">North Breeze</span>
+            <span className="font-display text-3xl tracking-wide">Auroville Farmstay</span>
             <p className="max-w-xs text-sm leading-relaxed text-soft/60">
-              A quiet homestay in the hills of {site.location}. Slow down, take in the views and feel
+              A quiet farmstay retreat in {site.location}. Slow down, take in the greenery and feel
               at home.
             </p>
             <a
@@ -73,8 +73,8 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-2 border-t border-soft/15 pt-8 text-xs text-soft/45 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {year} Coorg North Breeze. All rights reserved.</span>
-          <span className="tracking-[0.16em] uppercase">Madikeri · Coorg · Karnataka</span>
+          <span>© {year} Auroville Farmstay. All rights reserved.</span>
+          <span className="tracking-[0.16em] uppercase">Moinabad · Hyderabad · Telangana</span>
         </div>
       </div>
     </footer>

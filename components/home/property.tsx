@@ -7,7 +7,6 @@ import {
   useTransform,
   useMotionValueEvent,
 } from 'framer-motion'
-import Image from 'next/image'
 
 export function Property() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -18,19 +17,11 @@ export function Property() {
   })
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    const header = document.querySelector('header')
-
-    if (header) {
-      if (latest > 0.01 && latest < 0.99) {
-        header.style.transform = 'translateY(-100%)'
-        header.style.opacity = '0'
-        header.style.pointerEvents = 'none'
-      } else {
-        header.style.transform = ''
-        header.style.opacity = ''
-        header.style.pointerEvents = ''
-      }
-    }
+    const shouldHide = latest > 0.01 && latest < 0.99
+    // Dispatch custom event to Navbar instead of imperative DOM manipulation
+    window.dispatchEvent(
+      new CustomEvent('set-navbar-hidden', { detail: { hidden: shouldHide } })
+    )
   })
 
   const dayOpacity = useTransform(
@@ -66,25 +57,16 @@ export function Property() {
           className="absolute inset-0 h-full w-full"
           style={{ scale: imageScale }}
         >
-          {/* Desktop */}
-          <Image
-            src="/images/Night-View.webp"
-            alt="Night view of Coorg with starry hills"
-            fill
-            sizes="100vw"
-            className="hidden object-cover md:block"
-            priority
-          />
-
-          {/* Mobile */}
-          <Image
-            src="/images/Night-View-Mobile.webp"
-            alt="Night view of Coorg with starry hills"
-            fill
-            sizes="100vw"
-            className="block object-contain md:hidden"
-            priority
-          />
+          <picture>
+            <source media="(max-width: 767px)" srcSet="/images/Night-View-Mobile.webp" />
+            <source media="(min-width: 768px)" srcSet="/images/Night-View.webp" />
+            <img
+              src="/images/Night-View.webp"
+              alt="Night view of Coorg with starry hills"
+              className="absolute inset-0 h-full w-full object-contain md:object-cover"
+              fetchPriority="high"
+            />
+          </picture>
         </motion.div>
 
         {/* ================= EVENING ================= */}
@@ -95,25 +77,16 @@ export function Property() {
             scale: imageScale,
           }}
         >
-          {/* Desktop */}
-          <Image
-            src="/images/Evening-View.webp"
-            alt="Evening view of Coorg in warm sunset light"
-            fill
-            sizes="100vw"
-            className="hidden object-cover md:block"
-            priority
-          />
-
-          {/* Mobile */}
-          <Image
-            src="/images/Evening-View-Mobile.webp"
-            alt="Evening view of Coorg in warm sunset light"
-            fill
-            sizes="100vw"
-            className="block object-contain md:hidden"
-            priority
-          />
+          <picture>
+            <source media="(max-width: 767px)" srcSet="/images/Evening-View-Mobile.webp" />
+            <source media="(min-width: 768px)" srcSet="/images/Evening-View.webp" />
+            <img
+              src="/images/Evening-View.webp"
+              alt="Evening view of Coorg in warm sunset light"
+              className="absolute inset-0 h-full w-full object-contain md:object-cover"
+              loading="lazy"
+            />
+          </picture>
         </motion.div>
 
         {/* ================= DAY ================= */}
@@ -124,25 +97,16 @@ export function Property() {
             scale: imageScale,
           }}
         >
-          {/* Desktop */}
-          <Image
-            src="/images/Day-View.webp"
-            alt="Day view of Coorg hills in lush sunlight"
-            fill
-            sizes="100vw"
-            className="hidden object-cover md:block"
-            priority
-          />
-
-          {/* Mobile */}
-          <Image
-            src="/images/Day-View-Mobile.webp"
-            alt="Day view of Coorg hills in lush sunlight"
-            fill
-            sizes="100vw"
-            className="block object-contain md:hidden"
-            priority
-          />
+          <picture>
+            <source media="(max-width: 767px)" srcSet="/images/Day-View-Mobile.webp" />
+            <source media="(min-width: 768px)" srcSet="/images/Day-View.webp" />
+            <img
+              src="/images/Day-View.webp"
+              alt="Day view of Coorg hills in lush sunlight"
+              className="absolute inset-0 h-full w-full object-contain md:object-cover"
+              loading="lazy"
+            />
+          </picture>
         </motion.div>
 
       </div>

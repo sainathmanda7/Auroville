@@ -1,24 +1,23 @@
 // -----------------------------------------------------------------------------
-// Centralized, editable content for Coorg North Breeze.
-// Edit values here to update the whole site. No fabricated facts â€” placeholder
-// fields are clearly marked and safe to replace with real information.
+// Centralized, editable content for Auroville Farmstay.
+// Edit values here to update the whole site.
 // -----------------------------------------------------------------------------
 
 export const site = {
-  name: 'North Breeze',
-  fullName: 'Coorg North Breeze',
-  location: 'Madikeri, Coorg, Karnataka',
-  // Primary phone (provided).
-  phone: '+91 88673 18857',
-  phoneHref: 'tel:+918867318857',
-  // WhatsApp uses the same number by default. Edit if a different number is used.
-  whatsapp: '918867318857',
-  whatsappMessage: 'Hello! I would like to enquire about a stay at Coorg North Breeze.',
-  // Configurable Google Maps links. Replace the query with an exact pin when available.
-  mapsSearchUrl: 'https://www.google.com/maps/search/?api=1&query=Coorg+North+Breeze+Madikeri+Coorg+Karnataka',
-  mapsDirectionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Coorg+North+Breeze+Madikeri+Coorg+Karnataka',
+  name: 'Auroville Farmstay',
+  fullName: 'Auroville Farmstay',
+  location: 'Moinabad, near Hyderabad, Telangana',
+  // Primary phone
+  phone: '+91 86889 67145',
+  phoneHref: 'tel:+918688967145',
+  // WhatsApp
+  whatsapp: '918688967145',
+  whatsappMessage: 'Hello! I would like to enquire about a stay at Auroville Farmstay.',
+  // Configurable Google Maps links for Auroville FarmStay.
+  mapsSearchUrl: 'https://www.google.com/maps/search/?api=1&query=Auroville+FarmStay+Moinabad+Hyderabad',
+  mapsDirectionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Auroville+FarmStay+Moinabad',
   mapsEmbedUrl:
-    'https://www.google.com/maps?q=Madikeri,Coorg,Karnataka&z=13&output=embed',
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3809.747985118099!2d78.26889131065958!3d17.279423183521065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcbc122cba77cab%3A0x435454930bad970b!2sAuroville%20FarmStay!5e0!3m2!1sen!2sin!4v1790497567037!5m2!1sen!2sin',
 } as const
 
 export function whatsappUrl(message = site.whatsappMessage) {
@@ -26,10 +25,9 @@ export function whatsappUrl(message = site.whatsappMessage) {
 }
 
 export const nav = [
-  { label: 'Home', href: '/' },
-  { label: 'Stay', href: '/#stay' },
+  { label: 'Home', href: '/#home' },
+  { label: 'Rooms', href: '/#rooms' },
   { label: 'Experience', href: '/#experience' },
-  { label: 'Gallery', href: '/#gallery' },
   { label: 'Contact', href: '/#contact' },
 ] as const
 
@@ -47,20 +45,29 @@ export const rooms: Room[] = [
   {
     id: 'room-01',
     label: 'Room 01',
-    name: 'Garden View Room',
-    image: '/images/room-1.png',
+    name: 'Bed Room',
+    image: '/Rooms/bed room.webp',
     description:
-      'A warm wood-framed room with a pitched timber ceiling, opening to soft green views through the windows.',
-    details: ['Double bed', 'Garden-facing windows', 'Ceiling fan', 'Attached bathroom'],
+      'A serene, sunlit bedroom designed with warm tones and restful comforts for a calm countryside stay.',
+    details: ['King bed', 'Air conditioning', 'Garden views', 'Attached bathroom'],
   },
   {
     id: 'room-02',
     label: 'Room 02',
-    name: 'Corner Light Room',
-    image: '/images/room-2.png',
+    name: 'Living Lounge',
+    image: '/Rooms/living area 1.webp',
     description:
-      'A bright corner room wrapped in natural light, with a simple work desk and calm, airy surroundings.',
-    details: ['Double bed', 'Corner windows', 'Work desk', 'Attached bathroom'],
+      'A spacious living space with ample seating, airy natural lighting, and relaxed farm vibes.',
+    details: ['Lounge seating', 'Open layout', 'Scenic views', 'Ceiling fans'],
+  },
+  {
+    id: 'room-03',
+    label: 'Room 03',
+    name: 'Family Hall',
+    image: '/Rooms/living area 2.webp',
+    description:
+      'A cozy indoor gathering space ideal for conversations, board games, and quiet evenings.',
+    details: ['Comfortable sofas', 'Warm lighting', 'Entertainment ready', 'Cross ventilation'],
   },
 ]
 
@@ -74,87 +81,104 @@ export const amenities = [
 ]
 
 export type Experience = {
+  id: string
   number: string
   title: string
+  tagline: string
+  badge: string
   description: string
-  image?: string
+  image: string
+  highlights: string[]
 }
 
-// Descriptions are short and atmospheric â€” no invented distances or facts.
+// Curated on-site experiences at the property
 export const experiences: Experience[] = [
   {
+    id: 'exp-bonfire',
     number: '01',
-    title: "Raja's Seat",
+    badge: 'Evening Gathering',
+    tagline: 'Warmth under the stars',
+    title: 'Campfire & Starlit Hearth',
     description:
-      'A garden viewpoint famous for its sweeping sunsets over the layered Coorg hills.',
-    image: '/images/coorg-town-day.png',
+      'As dusk cools the mountain air, our stone hearth comes alive. Gather under the timber pergola, let the crackle of wood set a peaceful rhythm, and share unhurried conversations under an open blanket of stars.',
+    image: '/Experience/fire.webp',
+    highlights: [
+      'Stone Fire Hearth',
+      'Pergola Lounge Benches',
+      'Ambient Lantern Lighting',
+      'Cool Mountain Breezes',
+    ],
   },
   {
+    id: 'exp-cinema',
     number: '02',
-    title: 'Madikeri Fort',
+    badge: 'Signature Feature',
+    tagline: 'Cinema under the night sky',
+    title: 'Open-Air Cinema Lounge',
     description:
-      'A historic hilltop fort at the heart of Madikeri, quietly holding the townâ€™s stories.',
-    image: '/images/property-exterior.png',
+      'Recline in plush leather armchairs inside our private garden pavilion. With a crisp projection screen, warm pendant lighting, and gentle tropical night sounds, every movie becomes an unforgettable cinematic escape.',
+    image: '/Experience/theater.webp',
+    highlights: [
+      'Plush Recliner Loungers',
+      'High-Definition Screen',
+      'Warm Edison Glow',
+      'Surrounding Greenery',
+    ],
   },
   {
+    id: 'exp-pool',
     number: '03',
-    title: 'Abbey Falls',
+    badge: 'Day & Night Oasis',
+    tagline: 'Cascading serenity',
+    title: 'Water Curtain Pool',
     description:
-      'A cascade tucked among coffee estates and spice plantations, framed by dense green.',
-    image: '/images/balcony.png',
-  },
-  {
-    number: '04',
-    title: 'Coffee Plantations',
-    description:
-      'The scent of coffee blossom drifts across the estates that give Coorg its character.',
-    image: '/images/night-terrace.webp',
-  },
-  {
-    number: '05',
-    title: 'Coorg Nature & Surroundings',
-    description:
-      'Misty mornings, birdsong and slow walks through the hills that surround the homestay.',
-    image: '/images/coorg-night.png',
+      'Immerse yourself in shimmering waters highlighted by an ambient rainfall water-curtain feature. Enjoy an invigorating afternoon swim or a calm evening dip under soft pool glow and swaying palm trees.',
+    image: '/Experience/water.webp',
+    highlights: [
+      'Rainfall Water Curtain',
+      'Sunken Deck & Seating',
+      'Subtle Night Illumination',
+      'Lush Tropical Surroundings',
+    ],
   },
 ]
 
 export type GalleryImage = {
   src: string
   alt: string
-  category: 'Property' | 'Rooms' | 'Views' | 'Nature' | 'Coorg'
+  category: 'Property' | 'Rooms' | 'Views' | 'Nature' | 'Coorg' | 'Experience'
 }
 
 export const gallery: GalleryImage[] = [
   {
-    src: '/Gallery/road view.png',
-    alt: 'Road view',
-    category: 'Views',
-  },
-  {
-    src: '/Gallery/balcony.png',
-    alt: 'Balcony',
+    src: '/Gallery/overview.webp',
+    alt: 'Farmstay Aerial & Overview',
     category: 'Property',
   },
   {
-    src: '/Gallery/Pent House.png',
-    alt: 'Pent House',
+    src: '/Gallery/pool.webp',
+    alt: 'Swimming Pool',
     category: 'Property',
   },
   {
-    src: '/Gallery/Real night view.png',
-    alt: 'Real night view',
+    src: '/Gallery/projector.webp',
+    alt: 'Outdoor Projector & Movie Setup',
+    category: 'Property',
+  },
+  {
+    src: '/Gallery/playarea.webp',
+    alt: 'Lawn & Play Area',
+    category: 'Nature',
+  },
+  {
+    src: '/Gallery/nightview.webp',
+    alt: 'Night Ambiance & Lighting',
     category: 'Views',
   },
   {
-    src: '/Gallery/hall.png',
-    alt: 'Hall',
-    category: 'Rooms',
-  },
-  {
-    src: '/Gallery/window view.png',
-    alt: 'Window view',
-    category: 'Rooms',
+    src: '/Gallery/view.webp',
+    alt: 'Scenic Farm Surroundings',
+    category: 'Views',
   },
 ]
 

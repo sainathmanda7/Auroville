@@ -1,15 +1,16 @@
 'use client'
 
 import { type ReactNode, useRef } from 'react'
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import Image from 'next/image'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 
-const EASE = [0.22, 1, 0.36, 1] as const
+const EASE = [0.25, 0.1, 0.25, 1] as const
 
-/** Fade + rise reveal, triggered when the element enters the viewport. */
+// 1. Reveal Component
 export function Reveal({
   children,
   delay = 0,
-  y = 28,
+  y = 20,
   className,
   as = 'div',
 }: {
@@ -26,15 +27,15 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, y: reduce ? 0 : y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-10% 0px -10% 0px' }}
-      transition={{ duration: 0.9, ease: EASE, delay }}
+      viewport={{ once: true, margin: '150px 0px' }}
+      transition={{ duration: 0.5, delay, ease: EASE }}
     >
       {children}
     </MotionTag>
   )
 }
 
-/** Word-by-word text reveal for headings. */
+// 2. TextReveal Component
 export function TextReveal({
   text,
   className,
@@ -54,8 +55,8 @@ export function TextReveal({
             className="inline-block"
             initial={{ y: reduce ? 0 : '100%', opacity: reduce ? 1 : 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true, margin: '-12% 0px' }}
-            transition={{ duration: 0.8, ease: EASE, delay: delay + i * 0.06 }}
+            viewport={{ once: true, margin: '150px 0px' }}
+            transition={{ duration: 0.5, ease: EASE, delay: delay + i * 0.04 }}
           >
             {word}
             {i < words.length - 1 ? '\u00A0' : ''}
@@ -66,45 +67,49 @@ export function TextReveal({
   )
 }
 
-/** Image that reveals with a slow zoom-out as it enters the viewport. */
+// 3. ImageReveal Component (Optimized with Next.js <Image fill />)
 export function ImageReveal({
   src,
   alt,
+  priority = false,
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
   className,
   imgClassName,
-  sizes,
-  priority,
+  reduce = false,
 }: {
   src: string
   alt: string
+  priority?: boolean
+  sizes?: string
   className?: string
   imgClassName?: string
-  sizes?: string
-  priority?: boolean
+  reduce?: boolean
 }) {
-  const reduce = useReducedMotion()
   return (
-    <div className={`overflow-hidden ${className ?? ''}`}>
-      <motion.img
+    <motion.div
+      initial={{ scale: reduce ? 1 : 1.12 }}
+      whileInView={{ scale: 1 }}
+      viewport={{ once: true, margin: '150px 0px' }}
+      transition={{ duration: 0.6, ease: EASE }}
+      className={`relative h-full w-full overflow-hidden ${className ?? ''} ${imgClassName ?? ''}`}
+    >
+      <Image
         src={src || '/placeholder.svg'}
         alt={alt}
-        loading={priority ? 'eager' : 'lazy'}
+        fill
         sizes={sizes}
-        className={`h-full w-full object-cover ${imgClassName ?? ''}`}
-        initial={{ scale: reduce ? 1 : 1.18, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, margin: '-8% 0px' }}
-        transition={{ duration: 1.4, ease: EASE }}
+        priority={priority}
+        className="object-cover"
       />
-    </div>
+    </motion.div>
   )
 }
 
-/** Parallax wrapper — child drifts vertically as the section scrolls through view. */
+// 4. Parallax Component
 export function Parallax({
   children,
   className,
-  distance = 60,
+  distance = 50,
 }: {
   children: ReactNode
   className?: string

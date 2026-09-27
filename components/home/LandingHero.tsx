@@ -51,6 +51,7 @@ export default function LandingHero() {
     // Tailwind classes used for layout. Adjust heights/widths as needed.
     <section 
       ref={containerRef} 
+      id="home"
       className="relative w-full h-screen overflow-hidden bg-black"
     >
       {/* Background Layer: Building */}
@@ -62,8 +63,10 @@ export default function LandingHero() {
           src="/images/Landing-Page.webp" 
           alt="Building view" 
           fill 
+          sizes="(max-width: 768px) 100vw, 100vw"
           className="object-cover"
           priority // Prioritizes loading for above-the-fold content
+          fetchPriority="high"
         />
       </div>
 

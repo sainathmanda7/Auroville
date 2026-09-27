@@ -21,7 +21,7 @@ export function EnquiryForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const lines = [
-      'Hello North Breeze! I would like to enquire about a stay.',
+      'Hello Auroville Farmstay! I would like to enquire about a stay.',
       form.name ? `Name: ${form.name}` : '',
       form.checkIn ? `Check-in: ${form.checkIn}` : '',
       form.checkOut ? `Check-out: ${form.checkOut}` : '',
