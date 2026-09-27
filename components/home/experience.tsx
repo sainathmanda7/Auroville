@@ -1,4 +1,5 @@
-import { ImageReveal, Reveal, TextReveal } from '@/components/motion-primitives'
+import Image from 'next/image'
+import { Reveal, TextReveal } from '@/components/motion-primitives'
 import { experiences } from '@/lib/site-data'
 import { LightboxTrigger } from '@/components/lightbox-provider'
 import { Sparkles, Maximize2 } from 'lucide-react'
@@ -78,13 +79,14 @@ export function Experience() {
                       className="group relative block w-full overflow-hidden rounded-2xl bg-charcoal/5 text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-forest shadow-md hover:shadow-xl transition-all duration-500 aspect-[16/10]"
                       aria-label={`View full image of ${exp.title}`}
                     >
-                      <ImageReveal
+                      <Image
                         src={exp.image}
                         alt={exp.title}
-                        // Eagerly load the first image to resolve the LCP native lazy-loading bottleneck
+                        fill
+                        unoptimized={true}
                         priority={i === 0}
-                        imgClassName="transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                         sizes="(max-width: 1024px) 100vw, 60vw"
+                        className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                       />
 
                       {/* Subtle Vignette & Frame */}

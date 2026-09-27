@@ -14,16 +14,6 @@ if (typeof window !== "undefined") {
 function setNavHidden(hide: boolean) {
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent("set-navbar-hidden", { detail: { hidden: hide } }));
-    const header = document.getElementById("site-header");
-    if (header) {
-      if (hide) {
-        header.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
-        header.classList.remove("translate-y-0", "opacity-100");
-      } else {
-        header.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
-        header.classList.add("translate-y-0", "opacity-100");
-      }
-    }
   }
 }
 

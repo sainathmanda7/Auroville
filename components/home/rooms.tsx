@@ -1,4 +1,5 @@
-import { ImageReveal, Reveal } from '@/components/motion-primitives'
+import Image from 'next/image'
+import { Reveal } from '@/components/motion-primitives'
 import { SectionHeading } from '@/components/section-heading'
 import { rooms } from '@/lib/site-data'
 import { LightboxTrigger } from '@/components/lightbox-provider'
@@ -28,13 +29,14 @@ export function Rooms() {
                 className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-charcoal/5 text-left cursor-pointer group/img focus:outline-none focus:ring-2 focus:ring-forest shadow-sm hover:shadow-md transition-shadow duration-300"
                 aria-label={`View full image of ${room.name}`}
               >
-                <ImageReveal
+                <Image
                   src={room.image}
                   alt={room.name}
-                  // Preload the first card's image to eliminate the LCP delay
-                  priority={i === 0}
-                  imgClassName="transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
+                  fill
+                  unoptimized={true}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  priority={i === 0}
+                  className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
                 />
                 <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-xl pointer-events-none" />
                 

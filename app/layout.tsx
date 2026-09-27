@@ -21,15 +21,19 @@ const manrope = Manrope({
 })
 
 const geraldine = localFont({
-  src: '../public/fonts/GERALDINE PERSONAL USE.ttf',
+  src: '../public/fonts/GERALDINE PERSONAL USE.woff2',
   variable: '--font-geraldine',
   display: 'swap',
+  preload: true,
+  fallback: ['cursive', 'sans-serif'],
 })
 
 const hiragenda = localFont({
-  src: '../public/fonts/Hiragenda.ttf',
+  src: '../public/fonts/Hiragenda.woff2',
   variable: '--font-hiragenda',
   display: 'swap',
+  preload: true,
+  fallback: ['Georgia', 'serif'],
 })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
