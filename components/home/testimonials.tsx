@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { testimonials } from '@/lib/site-data'
 import { motion } from 'framer-motion'
@@ -15,15 +15,6 @@ export function Testimonials() {
             Stories from our guests.
           </h2>
         </div>
-        <a
-          href="https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs uppercase tracking-widest text-amber-200/80 hover:text-amber-200 transition-colors inline-flex items-center gap-1.5"
-        >
-          <span>Read all on Booking.com</span>
-          <span aria-hidden="true">&rarr;</span>
-        </a>
       </div>
 
       <div className="relative flex w-full overflow-hidden">
@@ -47,18 +38,7 @@ export function Testimonials() {
               <footer className="mt-8 flex items-center justify-between border-t border-white/10 pt-4">
                 <div className="flex flex-col gap-0.5">
                   <span className="text-base font-medium tracking-wide text-soft">{item.name}</span>
-                  <span className="text-xs uppercase tracking-widest text-soft/50">{item.detail}</span>
                 </div>
-                {item.url && (
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-medium text-amber-200/80 hover:text-amber-200 underline underline-offset-4"
-                  >
-                    Booking.com
-                  </a>
-                )}
               </footer>
             </div>
           ))}

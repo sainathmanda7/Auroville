@@ -185,70 +185,48 @@ export const gallery: GalleryImage[] = [
 export type Testimonial = {
   quote: string
   name: string
-  detail: string
-  url?: string
+  detail?: string
 }
 
-// EDITABLE PLACEHOLDERS â€” replace with real, attributed guest reviews.
 export const testimonials: Testimonial[] = [
   {
     quote: "We felt like home food was delicious. Rooms big and clean. Very Sweet family took care of everything. Took us around his farm beautiful. The food was so delicious we had all our meals at home. If their was more than 5 stars I would have given them 100 stars. Enjoyed our stay excellent. Thanks a lot for everything.",
     name: "Jahanafrin",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
   {
     quote: "Really good stay! Very homely atmosphere and the owner was very friendly and staff was helpful. The plantation around the stay was soo beautiful, perfect to take a stroll around and experience the nature.",
     name: "Shrirame",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
   {
     quote: "I liked the homely food, clean rooms and prompt service provided by the caretaker Pushpa. The drive to property is an experience that you shouldn't miss, nested in nature away from the city.",
     name: "Suraj",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
   {
     quote: "The View, the rooms, the road to go there, the coffee estate, the cleanliness, the homely feel, the food, the hospitality of staff what not? Everthing is amazing here. The homely hospitality of the...",
     name: "Bhanu",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
   {
     quote: "Very nice and excellent stay. Staff are very friendly, we feel like home. Good service enjoyed the stay very much. Must stay spot in Coorg and it's away from all the town noises and busy routes...",
     name: "Chukkath",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
   {
     quote: "Care taker Vishal has been very helpful. Though we reached the location at 1AM he was very obedient and down to earth to help us check in at night without any hassle. Breakfast was super yummy and homely. Would definitely recommend this place to all my contacts.",
     name: "Pushpalatha",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
   {
     quote: "I stayed there for 4 days the location is awesome. The room was very clean and comfortable the view outside from the room was excellent. The staff was very friendly and the owner Rajesh is extremely warm and welcoming. We had a great time to talk with their family. Food was very yummy homely food. Overall it was superb.",
     name: "Jaibharath",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
   {
     quote: "Staff courteousness and simple but elegant rooms.",
     name: "Robert",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
   {
     quote: "Fabulous day Smiling cooperative staff.",
     name: "Shubhada",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
   {
     quote: "The welcoming was really Good, though we reached late in evening … also the lady (care taker) was really polite and helpful. The homemade food made by her was also good. We really enjoyed the stay and the surrounding they had...",
     name: "Kangralkar",
-    detail: "Booking.com Verified Review",
-    url: "https://www.booking.com/reviews/in/hotel/coorg-estate-breeze-homestay.html",
   },
 ]
