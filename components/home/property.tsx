@@ -68,7 +68,7 @@ export function Property() {
         >
           {/* Desktop */}
           <Image
-            src="/images/Night-View.png"
+            src="/images/Night-View.webp"
             alt="Night view of Coorg with starry hills"
             fill
             sizes="100vw"
@@ -78,7 +78,7 @@ export function Property() {
 
           {/* Mobile */}
           <Image
-            src="/images/Night-View-Mobile.png"
+            src="/images/Night-View-Mobile.webp"
             alt="Night view of Coorg with starry hills"
             fill
             sizes="100vw"
@@ -97,7 +97,7 @@ export function Property() {
         >
           {/* Desktop */}
           <Image
-            src="/images/Evening-View.png"
+            src="/images/Evening-View.webp"
             alt="Evening view of Coorg in warm sunset light"
             fill
             sizes="100vw"
@@ -107,7 +107,7 @@ export function Property() {
 
           {/* Mobile */}
           <Image
-            src="/images/Evening-View-Mobile.png"
+            src="/images/Evening-View-Mobile.webp"
             alt="Evening view of Coorg in warm sunset light"
             fill
             sizes="100vw"
@@ -126,7 +126,7 @@ export function Property() {
         >
           {/* Desktop */}
           <Image
-            src="/images/Day-View.png"
+            src="/images/Day-View.webp"
             alt="Day view of Coorg hills in lush sunlight"
             fill
             sizes="100vw"
@@ -136,7 +136,7 @@ export function Property() {
 
           {/* Mobile */}
           <Image
-            src="/images/Day-View-Mobile.png"
+            src="/images/Day-View-Mobile.webp"
             alt="Day view of Coorg hills in lush sunlight"
             fill
             sizes="100vw"

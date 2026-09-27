@@ -7,7 +7,7 @@ export function CtaBanner() {
     <section className="relative overflow-hidden bg-charcoal">
       <Parallax distance={50} className="absolute inset-0 h-[120%]">
         <ImageReveal
-          src="/images/night-terrace.png"
+          src="/images/night-terrace.webp"
           alt="Warmly lit terrace of North Breeze at dusk with string lights"
           className="h-full w-full"
           imgClassName="opacity-45"

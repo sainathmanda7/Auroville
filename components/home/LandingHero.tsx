@@ -59,7 +59,7 @@ export default function LandingHero() {
         className="absolute inset-0 z-0 w-full h-full"
       >
         <Image 
-          src="/images/Landing-Page.png" 
+          src="/images/Landing-Page.webp" 
           alt="Building view" 
           fill 
           className="object-cover"
@@ -74,7 +74,7 @@ export default function LandingHero() {
         className="absolute inset-0 z-10 w-full h-full origin-[50%_60%] will-change-transform"
       >
         <Image 
-          src="/images/Arch.png" 
+          src="/images/Arch.webp" 
           alt="Garden Arch" 
           fill 
           className="object-cover"

@@ -11,6 +11,22 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+function setNavHidden(hide: boolean) {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("set-navbar-hidden", { detail: { hidden: hide } }));
+    const header = document.getElementById("site-header");
+    if (header) {
+      if (hide) {
+        header.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+        header.classList.remove("translate-y-0", "opacity-100");
+      } else {
+        header.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
+        header.classList.add("translate-y-0", "opacity-100");
+      }
+    }
+  }
+}
+
 export function SendoffParallax() {
   const containerRef = useRef<HTMLDivElement>(null);
   const holeRef = useRef<HTMLDivElement>(null);
@@ -19,6 +35,15 @@ export function SendoffParallax() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    // Hide navbar smoothly as SendoffParallax approaches so it doesn't interrupt the initial frame
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top 120px",
+      end: "top top",
+      onEnter: () => setNavHidden(true),
+      onLeaveBack: () => setNavHidden(false),
+    });
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -26,6 +51,25 @@ export function SendoffParallax() {
         end: "+=2600", // Scroll to finish the zoom and hold
         scrub: 1,      // 1 second smoothing
         pin: true,     // Pin the section
+        onEnter: () => setNavHidden(true),
+        onLeave: () => setNavHidden(false),
+        onEnterBack: (self) => {
+          if (self.progress < 0.65) {
+            setNavHidden(true);
+          } else {
+            setNavHidden(false);
+          }
+        },
+        onLeaveBack: () => setNavHidden(false),
+        onUpdate: (self) => {
+          // Keep navbar hidden during the hole zoom parallax effect
+          // Open navbar again only after the parallax zoom effect is done (self.progress >= 0.65)
+          if (self.progress < 0.65) {
+            setNavHidden(true);
+          } else {
+            setNavHidden(false);
+          }
+        },
       }
     });
 
@@ -65,6 +109,10 @@ export function SendoffParallax() {
     // 5. Hold revealed state so user can comfortably read and interact
     tl.to({}, { duration: 0.6 });
 
+    return () => {
+      setNavHidden(false);
+    };
+
   }, { scope: containerRef });
 
   return (
@@ -79,7 +127,7 @@ export function SendoffParallax() {
         className="absolute inset-0 z-0 w-full h-full"
       >
         <Image 
-          src="/images/sendoff.png" 
+          src="/images/sendoff.webp" 
           alt="Sendoff view" 
           fill 
           priority
@@ -156,7 +204,7 @@ export function SendoffParallax() {
         className="absolute inset-0 z-20 w-full h-full origin-[50%_50%] will-change-transform pointer-events-none"
       >
         <Image 
-          src="/images/Hole.png" 
+          src="/images/Hole.webp" 
           alt="Hole view" 
           fill 
           priority

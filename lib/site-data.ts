@@ -1,4 +1,4 @@
-﻿// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Centralized, editable content for Coorg North Breeze.
 // Edit values here to update the whole site. No fabricated facts â€” placeholder
 // fields are clearly marked and safe to replace with real information.
@@ -108,7 +108,7 @@ export const experiences: Experience[] = [
     title: 'Coffee Plantations',
     description:
       'The scent of coffee blossom drifts across the estates that give Coorg its character.',
-    image: '/images/night-terrace.png',
+    image: '/images/night-terrace.webp',
   },
   {
     number: '05',

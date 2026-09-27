@@ -11,6 +11,16 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('home')
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    const handleNavVisibility = (e: Event) => {
+      const customEvent = e as CustomEvent<{ hidden: boolean }>
+      setHidden(Boolean(customEvent.detail?.hidden))
+    }
+    window.addEventListener('set-navbar-hidden', handleNavVisibility)
+    return () => window.removeEventListener('set-navbar-hidden', handleNavVisibility)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -90,7 +100,10 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        id="site-header"
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-in-out ${
+          hidden ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+        } ${
           solid ? 'border-b border-charcoal/10 bg-ivory/90 backdrop-blur-md' : 'bg-transparent'
         }`}
       >
